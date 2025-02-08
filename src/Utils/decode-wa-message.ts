@@ -385,6 +385,7 @@ export const decryptMessageNode = (
 						}
 
 						let msg: proto.IMessage = proto.Message.decode(e2eType !== 'plaintext' && !hasMsmsg ? unpadRandomMax16(msgBuffer) : msgBuffer)
+						//It's necessary to save the messageContextInfo in the store to decrypt messages from bots
 						msg = msg.deviceSentMessage?.message ? { ...msg.deviceSentMessage.message, messageContextInfo: msg.messageContextInfo } : msg;
 						if (msg.senderKeyDistributionMessage) {
 							//eslint-disable-next-line max-depth
